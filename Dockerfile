@@ -1,13 +1,13 @@
-FROM golang:alpine AS builder
+FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY main.go .
+COPY app/package*.json ./
 
-RUN go build -ldflags="-s -w" -o fullcycle main.go
+RUN npm install
 
-FROM scratch
+COPY app/ .
 
-COPY --from=builder /app/fullcycle /fullcycle
+EXPOSE 3000
 
-ENTRYPOINT ["/fullcycle"]
+CMD ["npm", "start"]
