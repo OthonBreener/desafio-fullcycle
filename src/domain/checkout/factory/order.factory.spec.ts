@@ -1,3 +1,4 @@
+import { UUID } from "sequelize/types";
 import { v4 as uuid } from "uuid";
 import OrderFactory from "./order.factory";
 
